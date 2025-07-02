@@ -8,7 +8,7 @@ const {isAuthenticated, userData} = useAuth()
 
   return (
     <>
-        {isAuthenticated ? children : <Navigate to="/login"/>} 
+        {isAuthenticated ? children : <Navigate to="/login"/>}
     </>
   )
 }

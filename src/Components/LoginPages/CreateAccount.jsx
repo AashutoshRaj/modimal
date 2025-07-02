@@ -119,7 +119,8 @@ const CreateAccount = () => {
 
              <Box className="field relative">
                 <Select
-
+                 arr={[1,2,3]}
+                 
                 />
 
             </Box>

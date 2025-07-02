@@ -4,7 +4,7 @@ import HeadingH3 from '../HeadingH3/HeadingH3';
 import ButtonComponent from '../ButtonComponent/ButtonComponent';
 import LoginPagesStyle from './LoginSignStyle';
 import loginImages from '../../assets/ModiWeekImages/loginImage.png';
-import { EyeIcon, OpenEye } from '../IconsAll/eyeIcon';
+// import { EyeIcon, OpenEye } from '../IconsAll/eyeIcon';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../AuthContext';

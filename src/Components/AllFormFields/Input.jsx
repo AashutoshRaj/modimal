@@ -24,7 +24,7 @@ export const Input = ({label, type, onChange, className, name, value, labelClass
 }
 
 
-export const Select = React.forwardRef(({onChange, value,  label, className,selectClass, ...rest }, ref)=>{
+export const Select = React.forwardRef(({onChange,arr, value,  label, className,selectClass, ...rest }, ref)=>{
 
 
     return(
@@ -39,7 +39,11 @@ export const Select = React.forwardRef(({onChange, value,  label, className,sele
               // {...rest}           
              >
                 <option value={value} disabled selected>Select City</option>
-                <option value={value} >Solan</option>
+
+                {arr.map((item)=>{
+                  return <option value={item} >{item}</option>
+                })}
+                {/* <option value={value} >Solan</option> */}
              
             </select>
         </div>
@@ -48,7 +52,7 @@ export const Select = React.forwardRef(({onChange, value,  label, className,sele
 
 
 export const RadioButton = React.forwardRef(
-  ({ onChange, value, label, className = '', name, checked, ...rest }, ref) => {
+  ({ onChange, value, label, className, name, checked, ...rest }, ref) => {
     return (
       <div className={className}>
       
