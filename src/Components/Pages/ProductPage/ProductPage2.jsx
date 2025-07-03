@@ -42,7 +42,7 @@ const ProductPage2 = ({ isSearchBanner = true, showImage = true }) => {
 
   // const { id } = useParams()
   useEffect(() => {
-    // console.log(113123, id)
+    // console.log(113123, id) 
 
     // ProductsGetAPI
     axios.get(`https://api.escuelajs.co/api/v1/products/${''}`)
@@ -69,7 +69,6 @@ const ProductPage2 = ({ isSearchBanner = true, showImage = true }) => {
       {showImage && <Box className="bannerBlock">
         <img src={bannerImage} alt="Banner" />
       </Box>}
-
       <Container>
         <Box className="productPage">
           <Box className="filterSideBar">

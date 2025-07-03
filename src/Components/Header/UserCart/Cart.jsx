@@ -72,7 +72,7 @@ const CartPopUp = styled(Box)(({ theme }) => ({
         padding: '0',
         maxHeight: '30.25vw',
         overflow: 'auto',
-        maxHeight: '590px',
+        // maxHeight: '590px',
         li: {
           display: "grid",
           gridTemplateColumns: "repeat(4,1fr)",
@@ -115,7 +115,7 @@ const CartPopUp = styled(Box)(({ theme }) => ({
     },
     ".buttonBlock": {
       button: {
-        maxWidth: "100%",
+        width: "100%",
         maxWidth: "392px",
         margin: "auto"
       },
