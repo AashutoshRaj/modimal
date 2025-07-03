@@ -10,7 +10,7 @@ import axios from 'axios';
 import { useAuth } from '../../AuthContext';
 import { useForm } from 'react-hook-form';
 import { Input } from '../AllFormFields/Input';
-import { EyeIcon, OpenEye } from '../IconsAll/eyeIcon';
+// import { EyeIcon, OpenEye } from '../IconsAll/eyeIcon';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -90,7 +90,7 @@ const Login = () => {
                 type="button"
                 onClick={() => setIsShowPwd((prev) => !prev)}
               >
-                {isShowPwd ? <OpenEye /> : <EyeIcon />}
+                {isShowPwd ? "O" : "E"}
               </button>
             </Box>
 

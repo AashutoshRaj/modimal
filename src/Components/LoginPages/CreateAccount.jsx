@@ -8,7 +8,7 @@ import loginImages from '../../assets/ModiWeekImages/loginImage.png';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Input, RadioButton, Select } from '../AllFormFields/Input';
-import { EyeIcon, OpenEye } from '../IconsAll/eyeIcon';
+// import { EyeIcon, OpenEye } from '../IconsAll/eyeIcon';
 
 const CreateAccount = () => {
   const [isShowPwd, setIsShowPwd] = useState(false);
@@ -112,7 +112,8 @@ const CreateAccount = () => {
                 onClick={() => setIsShowPwd((prev) => !prev)}
                 className="IconEye"
               >
-                {isShowPwd ? <OpenEye /> : <EyeIcon />}
+                {/* {isShowPwd ? <OpenEye /> : <EyeIcon />} */}
+                {isShowPwd ? "O" : "E"}
               </button>
 
 
