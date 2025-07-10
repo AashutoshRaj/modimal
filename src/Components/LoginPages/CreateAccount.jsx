@@ -8,10 +8,11 @@ import loginImages from '../../assets/ModiWeekImages/loginImage.png';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Input, RadioButton, Select } from '../AllFormFields/Input';
-// import { EyeIcon, OpenEye } from '../IconsAll/eyeIcon';
+import useToggle from '../CustomHooks/useToggle';
+import { EyeIcon, OpenEye } from '../IconsAll/eyeIcon';
 
 const CreateAccount = () => {
-  const [isShowPwd, setIsShowPwd] = useState(false);
+  const [isShowPwd, setIsShowPwd] = useToggle(false);
 
   const {
     register,
@@ -105,28 +106,23 @@ const CreateAccount = () => {
                 })}
                 errorMessage={errors.password?.message}
               />
-
-
               <button
                 type="button"
-                onClick={() => setIsShowPwd((prev) => !prev)}
+                // onClick={() => setIsShowPwd((prev) => !prev)}
+                onClick={setIsShowPwd}
                 className="IconEye"
               >
                 {/* {isShowPwd ? <OpenEye /> : <EyeIcon />} */}
-                {isShowPwd ? "O" : "E"}
+                {isShowPwd ?  <OpenEye/> : <EyeIcon/>}
               </button>
-
-
-            </Box>
+               </Box>
 
              <Box className="field relative">
                 <Select
-                 arr={[1,2,3]}
-                 
+                 arr={[1,2,3]}                 
                 />
 
             </Box>
-
             <Box className="field genderValue">
                <RadioButton
                   name="gender"

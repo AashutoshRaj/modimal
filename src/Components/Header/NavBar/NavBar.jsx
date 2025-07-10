@@ -49,7 +49,10 @@ const NavBar = () => {
               <Link className="items">Plus Size</Link>
             </li>
             <li>
-              <Link className="items">Sustainability</Link>
+              <Link className="items">Sussdstainability</Link>
+            </li>
+            <li>
+              <Link to="/receipt" className="items">Receipt</Link>
             </li>
           </ul>
         </Box>

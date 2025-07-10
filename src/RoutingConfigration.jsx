@@ -8,6 +8,7 @@ import CreateAccount from './Components/LoginPages/CreateAccount'
 import ProductDetailsPage from './Components/Pages/ProductDetailsPage/ProductDetailsPage'
 import ProductPage2 from './Components/Pages/ProductPage/ProductPage2'
 import ProtectedRoute from './ProtectRoute'
+import NutritionFacts from './Components/REcipet/NutritionFacts'
 
 
 
@@ -37,6 +38,11 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
         name: 'Login',
+      },
+      {
+        path: "/receipt",
+        element: <NutritionFacts/>,
+        name: 'receipt',
       },
       {
         path: "/product_detail/:pId",
