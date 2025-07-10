@@ -90,7 +90,7 @@ const Login = () => {
                 type="button"
                 onClick={() => setIsShowPwd((prev) => !prev)}
               >
-                {isShowPwd ? "O" : "E"}
+                {isShowPwd ?  <span style={{color:"#000"}}>Hide</span> : <span style={{color:"#000"}}>Show</span>}
               </button>
             </Box>
 
