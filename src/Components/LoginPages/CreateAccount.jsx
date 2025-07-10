@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Input, RadioButton, Select } from '../AllFormFields/Input';
 import useToggle from '../CustomHooks/useToggle';
-import { EyeIcon, OpenEye } from '../IconsAll/eyeIcon';
+// import { EyeIcon, OpenEye } from '../IconsAll/eyeIcon';
 
 const CreateAccount = () => {
   const [isShowPwd, setIsShowPwd] = useToggle(false);
@@ -113,7 +113,7 @@ const CreateAccount = () => {
                 className="IconEye"
               >
                 {/* {isShowPwd ? <OpenEye /> : <EyeIcon />} */}
-                {isShowPwd ?  <OpenEye/> : <EyeIcon/>}
+                {isShowPwd ?  <span style={{color:"#000"}}>Hide</span> : <span style={{color:"#000"}}>Show</span>}
               </button>
                </Box>
 
