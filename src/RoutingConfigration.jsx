@@ -45,18 +45,22 @@ const router = createBrowserRouter([
         name: 'receipt',
       },
       {
-        path: "/product_detail/:pId",
+        path: "/product_detail/",
         element: <ProtectedRoute> <ProductDetailsPage /> </ProtectedRoute>,
         name: 'ProductDetail',
       },
+      // {
+      //   path: "/product_detail/:pId",
+      //   element: <ProtectedRoute> <ProductDetailsPage /> </ProtectedRoute>,
+      //   name: 'ProductDetail',
+      // },
     ],
   },
 
-  {
-    path: "",
-    element: '',
-  }
-
+// {
+//   path: "*",
+//   element: <NotFound />, 
+// }
 
 ])
 

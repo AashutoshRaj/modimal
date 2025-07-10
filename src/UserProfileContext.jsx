@@ -33,7 +33,7 @@ const UserProfileProvider = ({ children }) => {
                     Authorization: `Bearer ${token}`
                 }
             }
-            axios.get(`https://api.escuelajs.co/api/v1/auth/profile`, headers)
+            axios.get(`https://api.escuelajs.co/api/v1/users`, headers)
                 .then((res) => {
                     localStorage.setItem("userData", JSON.stringify(res.data))
                     setUserData(res.data)

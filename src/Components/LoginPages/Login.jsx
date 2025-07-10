@@ -67,7 +67,7 @@ const Login = () => {
                    
                     message: 'Enter a valid email address',
                   },
-                   value:"john@mail.com",
+                   value:"maria@mail.com",
                 })}
                 errorMessage={errors.email?.message}
               />
@@ -82,7 +82,7 @@ const Login = () => {
                 registerProps={register('password',
                    {
                   required: 'Password is required',
-                   value:"changeme",
+                   value:"12345",
                 })}
                 errorMessage={errors.password?.message}
               />

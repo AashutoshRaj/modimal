@@ -5,6 +5,9 @@ import CloseIcon from '../../IconsAll/CloseIcon';
 import styled from 'styled-components';
 import ProductPage from '../../Pages/ProductPage/ProductPage';
 import ProductPage2 from '../../Pages/ProductPage/ProductPage2';
+import axios from 'axios';
+import FiltersBlock from '../../Filters/Filters';
+import ProductShowCard from '../../ProductShowCard/ProductShowCard2';
 // import ProductPage from '../../ProductPage/ProductPage';
 
 const SearchStyle = styled(Box)(({ theme }) => ({
@@ -64,7 +67,7 @@ const SearchStyle = styled(Box)(({ theme }) => ({
 
 const Search = (isProductPg) => {
   const [isOpen, setOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+  // const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
   const [isSearchBanner, setIsSearchBanner] = useState();
 
@@ -83,6 +86,21 @@ const Search = (isProductPg) => {
   //   }
   // }, [searchTerm]);
 
+    const [products, setProducts] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+
+       useEffect(() => {
+         axios.get('https://api.escuelajs.co/api/v1/products')
+         .then(res => setProducts(res.data))
+        
+      .catch(err => console.log(err));
+  }, []);
+
+   // Filter products based on search input
+  const filteredProducts = products.filter(product =>
+    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <SearchStyle>
       <Button onClick={() => setOpen(!isOpen)}>
@@ -97,19 +115,34 @@ const Search = (isProductPg) => {
                 type="text"
                 placeholder="Search "
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                // onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={e => setSearchTerm(e.target.value)}
               />
-              <SearchIcon className="searhIconSvg" />
-              <List>
+              <SearchIcon className="searhIconSvg" />              
+              {/* <List>
                 {results.map((item, index) => (
                   <ListItem key={index}>{item}</ListItem>
                 ))}
-              </List>
+              </List> */}
               <Box className="searchListProduct">
+                <FiltersBlock/>
+                    <ul>
+                  {filteredProducts.map(product => (
+                    <li key={product.id}>
 
-                <ProductPage2
+                      {/* <ProductShowCard
+
+                      /> */}
+                      <div>
+                        <img src={product.images[1]}/>
+                      </div>
+                      <strong>{product.title}</strong> — ${product.price}
+                    </li>
+                  ))}
+                </ul>
+                {/* <ProductPage2
                   showImage={false}
-                />
+                /> */}
               </Box>
             </Container>
           </Box>
