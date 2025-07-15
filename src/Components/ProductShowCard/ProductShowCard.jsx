@@ -73,7 +73,7 @@ const BestSellersStyles = styled(Box)(({ isDark }) => ({
   },
 }));
 
-const ProductShowCard = ({ productImage, productName, productCategory, productPrice, thumbnailImages, productDescription,wishListIcon  }) => {
+const ProductShowCard = ({ pid, productImage, productName, productCategory, productPrice, thumbnailImages, productDescription,wishListIcon  }) => {
   const { isDark } = useContext(ThemeContext);
   const [isWishList, setWishList] = useState(false);
 
@@ -95,8 +95,7 @@ const ProductShowCard = ({ productImage, productName, productCategory, productPr
         </Box>
         <Box className="productInfo">
           <Link
-            to="/product_detail"
-            state={{ productImage, productName, productCategory, productPrice, thumbnailImages, productDescription }}
+            to={"/product_detail/" +pid}
           >
             {productName}
           

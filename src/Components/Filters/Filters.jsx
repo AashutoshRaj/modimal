@@ -16,6 +16,21 @@ const FilterStyles = styled(Box)(({ theme }) => ({
             display: "flex",
             button: {
                 padding: "8px 25px",
+            },
+        },
+        p:{
+         display: 'flex',
+            gap: '8px',
+            alignItems: 'baseline',
+            flexWrap: 'wrap',
+            span:{
+                display: 'block',
+                background: '#5a6d57',
+                padding: '4px',
+                borderRadius: '4px',
+                color: '#fff',
+                maxWidth: 'max-content',
+                lineHeight: 'normal',
             }
         }
     },

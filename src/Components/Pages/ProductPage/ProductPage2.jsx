@@ -40,12 +40,11 @@ const ProductPage2 = ({ isSearchBanner = true, showImage = true }) => {
   const [products, setProducts] = useState([]);
   // const [isProductPg, setIsProductPage] = useState(true);
 
-  // const { id } = useParams()
   useEffect(() => {
     // console.log(113123, id) 
 
     // ProductsGetAPI
-    axios.get(`https://api.escuelajs.co/api/v1/products/${''}`)
+    axios.get(`https://api.escuelajs.co/api/v1/products`)
       .then((res) => {
         setProducts(res.data);
         console.log("Products fetched:", res.data);
@@ -79,6 +78,7 @@ const ProductPage2 = ({ isSearchBanner = true, showImage = true }) => {
               {products.map((item, index) => (
                 <ProductShowCard
                   key={index}
+                  pid = {item.id}
                   productName={item.title}
                   productImage={item.images?.[0]}
                   productPrice={`$${item.price}`}

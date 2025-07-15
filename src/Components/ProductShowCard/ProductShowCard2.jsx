@@ -91,7 +91,7 @@ const ProductShowCard = ({ productImage, productName, productCategory, productPr
         <Box className="productInfo">
           <Link
             to={'/product_detail'}
-            state={{ productImage, productName, productCategory, productPrice, productDescription }}
+           
           >
             {productName}
 

@@ -16,7 +16,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [isShowPwd, setIsShowPwd] = useState(false);
   const [loginError, setLoginError] = useState(""); 
-  const { setIsAuthenticated } = useAuth();
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
 
   const {
     register,
@@ -24,6 +24,21 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm();
+  
+   // Get the path where the user came from
+  const from = location.state?.from?.pathname || '/';
+
+   if (isAuthenticated) {
+      // Save auth info (you can use Context or Redux)
+      localStorage.setItem("auth", true);
+
+      // Redirect to previous page
+      navigate(from, { replace: true });
+    } else {
+      // alert("Invalid credentials");
+    }
+    // If not logged in
+    navigate('/login', { state: { from: location } });
 
   const onSubmit = (data) => {
     const payload = {

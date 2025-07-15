@@ -61,7 +61,7 @@ const UserCart = ({ searchTerm, setSearchTerm }) => {
         <CartUserStyle>
             <Box className="headerRightSide">
                 <>
-                {isAuthenticated && userData ? <span>HI! {userData[1]?.name}<sub>Welcome</sub></span> : " "
+                {isAuthenticated && userData ? <span>HI! {userData?.name}<sub>Welcome</sub></span> : " "
 
                 }
 
@@ -80,7 +80,7 @@ const UserCart = ({ searchTerm, setSearchTerm }) => {
                 <>
                  {isAuthenticated ?  (
                     <div className='userProfile'>
-                        <img src={userData[1]?.avatar || noImage}  alt='userImage'/>
+                        <img src={userData?.avatar || noImage}  alt='userImage'/>
                     </div>
                  ):(
                     <></>

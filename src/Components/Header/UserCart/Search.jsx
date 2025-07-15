@@ -8,6 +8,7 @@ import ProductPage2 from '../../Pages/ProductPage/ProductPage2';
 import axios from 'axios';
 import FiltersBlock from '../../Filters/Filters';
 import ProductShowCard from '../../ProductShowCard/ProductShowCard2';
+import { Link } from 'react-router-dom';
 // import ProductPage from '../../ProductPage/ProductPage';
 
 const SearchStyle = styled(Box)(({ theme }) => ({
@@ -27,7 +28,8 @@ const SearchStyle = styled(Box)(({ theme }) => ({
       ".searchListProduct": {
         height: 'calc(100vh - 200px)',
         overflow: 'auto',
-
+        display:"grid",
+      gridTemplateColumns:"repeat(3,1fr)",
         " &::-webkit-scrollbar": {
           width: "4px",
         },
@@ -36,6 +38,18 @@ const SearchStyle = styled(Box)(({ theme }) => ({
         "&::-webkit-scrollbar-thumb ": {
           background: " #f5f5f5",
           borderRadius: "10px;"
+        },
+        ul:{
+          gridColumn: 'span 2',
+          gridTemplateColumns: 'repeat(2,1fr)',
+          display: 'grid',
+          gap: '15px',
+          listStyle:"none",
+          li:{
+            img:{
+              width:"100%",
+            }
+          }
         }
       },
     },
@@ -63,6 +77,9 @@ const SearchStyle = styled(Box)(({ theme }) => ({
       },
     },
   },
+  ".searchListProduct":{
+      
+  }
 }));
 
 const Search = (isProductPg) => {
@@ -71,26 +88,12 @@ const Search = (isProductPg) => {
   const [results, setResults] = useState([]);
   const [isSearchBanner, setIsSearchBanner] = useState();
 
-  // Sample data to filter
-  // const data = ['Apple', 'Banana', 'Orange', 'Mango', 'Grapes', 'Watermelon'];
-
-  // Filter logic
-  // useEffect(() => {
-  //   if (searchTerm === '') {
-  //     setResults([]);
-  //   } else {
-  //     const filtered = data.filter((item) =>
-  //       item.toLowerCase().includes(searchTerm.toLowerCase())
-  //     );
-  //     setResults(filtered);
-  //   }
-  // }, [searchTerm]);
 
     const [products, setProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
        useEffect(() => {
-         axios.get('https://api.escuelajs.co/api/v1/products')
+         axios.get(`https://api.escuelajs.co/api/v1/products/${''}`)
          .then(res => setProducts(res.data))
         
       .catch(err => console.log(err));
@@ -127,22 +130,18 @@ const Search = (isProductPg) => {
               <Box className="searchListProduct">
                 <FiltersBlock/>
                     <ul>
-                  {filteredProducts.map(product => (
-                    <li key={product.id}>
-
-                      {/* <ProductShowCard
-
-                      /> */}
-                      <div>
-                        <img src={product.images[1]}/>
-                      </div>
-                      <strong>{product.title}</strong> — ${product.price}
-                    </li>
-                  ))}
-                </ul>
-                {/* <ProductPage2
-                  showImage={false}
-                /> */}
+                      {filteredProducts.map(product => (
+                        <li key={product.id}>                    
+                          <div>
+                            <img src={product.images[1]}/>
+                          </div>
+                        <Link to="/product_detail">
+                          <strong>{product.title}</strong> — ${product.price}
+                        </Link>
+                        </li>
+                      ))}
+                     </ul>
+               
               </Box>
             </Container>
           </Box>

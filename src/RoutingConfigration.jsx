@@ -44,16 +44,16 @@ const router = createBrowserRouter([
         element: <NutritionFacts/>,
         name: 'receipt',
       },
-      {
-        path: "/product_detail/",
-        element: <ProtectedRoute> <ProductDetailsPage /> </ProtectedRoute>,
-        name: 'ProductDetail',
-      },
       // {
-      //   path: "/product_detail/:pId",
+      //   path: "/product_detail/",
       //   element: <ProtectedRoute> <ProductDetailsPage /> </ProtectedRoute>,
       //   name: 'ProductDetail',
       // },
+      {
+        path: "/product_detail/:pId",
+        element: <ProtectedRoute> <ProductDetailsPage /> </ProtectedRoute>,
+        name: 'ProductDetail',
+      },
     ],
   },
 
