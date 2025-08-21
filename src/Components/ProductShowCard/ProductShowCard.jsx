@@ -30,21 +30,21 @@ const BestSellersStyles = styled(Box)(({ isDark }) => ({
         cursor: 'pointer',
         background: 'transparent',
         border: '0',
-        outline:'unset',
+        outline: 'unset',
         "&:hover svg path": {
           fill: "#ff5656",
           stroke: "#ff5656",
         },
-        ".selectedWishList":{
-          svg:{
-            path:{
-                fill: "#ff5656",
-             stroke: "#ff5656",
+        ".selectedWishList": {
+          svg: {
+            path: {
+              fill: "#ff5656",
+              stroke: "#ff5656",
             }
           }
         }
       }
-      
+
     },
     ".productInfo": {
       display: 'grid',
@@ -61,7 +61,7 @@ const BestSellersStyles = styled(Box)(({ isDark }) => ({
         gridColumn: "span 3",
         fontSize: "16px",
         color: isDark ? "#000000" : "#ffffff",
-        margin:"0",
+        margin: "0",
       },
       span: {
         textAlign: 'right',
@@ -73,9 +73,11 @@ const BestSellersStyles = styled(Box)(({ isDark }) => ({
   },
 }));
 
-const ProductShowCard = ({ pid, productImage, productName, productCategory, productPrice, thumbnailImages, productDescription,wishListIcon  }) => {
+const ProductShowCard = ({ pid, productImage, productName, productCategory, productPrice, thumbnailImages, productDescription, wishListIcon }) => {
   const { isDark } = useContext(ThemeContext);
   const [isWishList, setWishList] = useState(false);
+  const isAuthenticated = localStorage.getItem('auth') === 'true';
+
 
 
 
@@ -95,15 +97,15 @@ const ProductShowCard = ({ pid, productImage, productName, productCategory, prod
         </Box>
         <Box className="productInfo">
           <Link
-            to={"/product_detail/" +pid}
+            to={isAuthenticated ? ("/product_detail/" + pid) : ("/login?returnUrl=/product_detail/" + pid)}
           >
             {productName}
-          
+
           </Link>
           {/* <p>{productCategory}</p> */}
           <span>{productPrice}</span>
 
-          
+
           {/* <ButtonComponent svgIcon=<CartIcon/> /> */}
         </Box>
       </Box>

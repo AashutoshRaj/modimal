@@ -13,8 +13,6 @@ const UserProfileProvider = ({ children }) => {
   const [userData, setUserData] = useState([]);
   const [isLoading, setIsLoading] = useState();
 
-  const { isAuthenticated } = useAuth();
-
   useEffect(() => {
     // GetUserLoginAPI
     const token = JSON.parse(localStorage.getItem("token"));

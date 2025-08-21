@@ -37,10 +37,10 @@ import RoutingConfiguration from './RoutingConfigration';
 //   return <>{isLoginCart ? <ModiWeek /> : null}</>;
 // };
 
-function App(searchTerm) {
+function  App(searchTerm) {
   const [isDark, setIsDark] = useState(() => {
     const stored = localStorage.getItem('isDarkMode');
-    return stored ? JSON.parse(stored) : false;
+    return stored ? JSON.parse(stored) : true;
   });
 
   useEffect(() => {
@@ -50,8 +50,8 @@ function App(searchTerm) {
 
   return (
     <ThemeContext.Provider value={{ isDark, setIsDark }}>
-      <RoutingConfiguration />
-     </ThemeContext.Provider>
+         <RoutingConfiguration />
+    </ThemeContext.Provider>
   )
 }
 

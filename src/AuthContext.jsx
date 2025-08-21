@@ -3,44 +3,46 @@ import { createContext } from "react";
 import { useNavigate } from 'react-router-dom';
 export const AuthContext = createContext()
 
-const AuthProvider = ({children}) => {
-   
-
-// const navigate = useNavigate();
- const [isAuthenticated, setIsAuthenticated] = useState();
+const AuthProvider = ({ children }) => {
 
 
+  // const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState();
 
-   const  login = () => {
-     
-            localStorage.setItem("token" , token)
-            setIsAuthenticated(true)
 
-   } 
 
-    const  logout = () => {
-       localStorage.removeItem("token");
-        localStorage.removeItem("user_profile"); 
-        setIsAuthenticated(false);
-        setUserData(null); 
-        
-   } 
+  const login = () => {
 
-        useEffect(()=>{
-            const token = localStorage.getItem('token');   
-            if(token){
-                setIsAuthenticated(true)
-            }else{
-                setIsAuthenticated(false)
-            }
-        })
+    localStorage.setItem("token", token)
+    setIsAuthenticated(true)
 
-        
+  }
+
+  const logout = () => {
+    localStorage.clear()
+    //  localStorage.removeItem("token");
+    //  localStorage.removeItem("auth");
+    //   localStorage.removeItem("user_profile"); 
+    setIsAuthenticated(false);
+    setUserData(null);
+
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsAuthenticated(true)
+    } else {
+      setIsAuthenticated(false)
+    }
+  })
+
+
 
 
   return (
-    <AuthContext.Provider value={{isAuthenticated, setIsAuthenticated, login, logout}}>
-            {children}
+    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, login, logout }}>
+      {children}
     </AuthContext.Provider>
   )
 }
@@ -48,7 +50,7 @@ const AuthProvider = ({children}) => {
 export default AuthProvider
 
 
-export const  useAuth = () =>useContext(AuthContext)
+export const useAuth = () => useContext(AuthContext)
 
 
 

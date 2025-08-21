@@ -14,7 +14,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --darkColorTheme:#000000;
+  --darkColorTheme:rgb(90 109 87 / 59%);
   --whiteColor:#ffffff;
 }
 main {

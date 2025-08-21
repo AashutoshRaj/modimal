@@ -135,7 +135,7 @@ const Search = (isProductPg) => {
                           <div>
                             <img src={product.images[1]}/>
                           </div>
-                        <Link to="/product_detail">
+                        <Link to={"/product_detail/" + product.id }>
                           <strong>{product.title}</strong> — ${product.price}
                         </Link>
                         </li>

@@ -5,7 +5,7 @@ import ButtonComponent from '../ButtonComponent/ButtonComponent';
 import LoginPagesStyle from './LoginSignStyle';
 import loginImages from '../../assets/ModiWeekImages/loginImage.png';
 // import { EyeIcon, OpenEye } from '../IconsAll/eyeIcon';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../AuthContext';
 import { useForm } from 'react-hook-form';
@@ -15,8 +15,12 @@ import { Input } from '../AllFormFields/Input';
 const Login = () => {
   const navigate = useNavigate();
   const [isShowPwd, setIsShowPwd] = useState(false);
-  const [loginError, setLoginError] = useState(""); 
-  const { isAuthenticated, setIsAuthenticated } = useAuth();
+  const [loginError, setLoginError] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem('auth') === 'true'
+  );
+
+  const [searchParams] = useSearchParams();
 
   const {
     register,
@@ -24,21 +28,32 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm();
-  
-   // Get the path where the user came from
+
   const from = location.state?.from?.pathname || '/';
 
-   if (isAuthenticated) {
-      // Save auth info (you can use Context or Redux)
-      localStorage.setItem("auth", true);
+  // Only run this inside your login function
+  const handleLogin = () => {
+    // Assuming credentials are valid
+    setIsAuthenticated(true);
+    localStorage.setItem("auth", true);
 
-      // Redirect to previous page
-      navigate(from, { replace: true });
-    } else {
-      // alert("Invalid credentials");
-    }
-    // If not logged in
-    navigate('/login', { state: { from: location } });
+    navigate(from, { replace: true });
+  };
+
+  //  // Get the path where the user came from
+  // const from = location.state?.from?.pathname || '/';
+
+  //  if (isAuthenticated) {
+  //     // Save auth info (you can use Context or Redux)
+  //     localStorage.setItem("auth", true);
+
+  //     // Redirect to previous page
+  //     navigate(from, { replace: true });
+  //   } else {
+  //     // alert("Invalid credentials");
+  //   }
+  //   // If not logged in
+  //   navigate('/login', { state: { from: location } });
 
   const onSubmit = (data) => {
     const payload = {
@@ -46,18 +61,28 @@ const Login = () => {
       password: data.password,
     };
 
-    setLoginError(""); 
+    setLoginError("");
 
     axios
       .post(`https://api.escuelajs.co/api/v1/auth/login`, payload)
       .then((res) => {
         localStorage.setItem('token', JSON.stringify(res.data.access_token));
         setIsAuthenticated(true);
-        navigate('/product_detail');
+    localStorage.setItem("auth", true);
+
+        const returnUrl = searchParams.get('returnUrl');
+        console.log(returnUrl)
+        if (returnUrl) {
+          navigate(returnUrl);
+        } else {
+          navigate('/');
+        }
+
+
       })
       .catch((err) => {
         console.error('Login failed', err);
-        setLoginError("Invalid email or password. Please try again."); 
+        setLoginError("Invalid email or password. Please try again.");
       });
   };
 
@@ -79,10 +104,10 @@ const Login = () => {
                   required: 'This field is required',
                   pattern: {
                     // value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                   
+
                     message: 'Enter a valid email address',
                   },
-                   value:"maria@mail.com",
+                  value: "maria@mail.com",
                 })}
                 errorMessage={errors.email?.message}
               />
@@ -93,23 +118,23 @@ const Login = () => {
                 type={isShowPwd ? 'text' : 'password'}
                 name="password"
                 label="Password"
-                
+
                 registerProps={register('password',
-                   {
-                  required: 'Password is required',
-                   value:"12345",
-                })}
+                  {
+                    required: 'Password is required',
+                    value: "12345",
+                  })}
                 errorMessage={errors.password?.message}
               />
               <button
                 type="button"
                 onClick={() => setIsShowPwd((prev) => !prev)}
               >
-                {isShowPwd ?  <span style={{color:"#000"}}>Hide</span> : <span style={{color:"#000"}}>Show</span>}
+                {isShowPwd ? <span style={{ color: "#000" }}>Hide</span> : <span style={{ color: "#000" }}>Show</span>}
               </button>
             </Box>
 
-         
+
             {loginError && (
               <p className="errorValidation">{loginError}</p>
             )}

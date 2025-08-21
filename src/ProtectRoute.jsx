@@ -1,16 +1,16 @@
-import React from 'react'
-import { useAuth } from './AuthContext'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom';
 
-const ProtectedRoute = ({children}) => {
+const ProtectedRoute = ({ children }) => {
+  const location = useLocation();
+  const isAuthenticated = localStorage.getItem('auth') === 'true';
+  console.log(isAuthenticated)
 
-const {isAuthenticated, userData} = useAuth()
+  if (!isAuthenticated) {
+    // Redirect to login and save the path
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+  return children;
+};
 
-  return (
-    <>
-        {isAuthenticated ? children : <Navigate to="/login"/>}
-    </>
-  )
-}
 
-export default ProtectedRoute
+export default ProtectedRoute;

@@ -36,7 +36,7 @@ const ThumBNailStyling = styled(Box)(({ theme }) => ({
   }
 }));
 
-const ProductImage = ({ mainImage, thumbnailImages }) => {
+const ProductImage = ({ productImage, thumbnailImages }) => {
   return (
     <ThumBNailStyling>
       <Box className="productImageT">
@@ -51,8 +51,8 @@ const ProductImage = ({ mainImage, thumbnailImages }) => {
 
         {/* Main Image */}
         <Box className="productBigImg">
-          {mainImage ? (
-            <img src={mainImage} alt="Main Product" />
+          {productImage ? (
+            <img src={productImage} alt="Main Product" />
           ) : (
             <div>No main image available</div>
           )}
